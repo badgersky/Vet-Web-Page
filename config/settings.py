@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'reservations.apps.ReservationsConfig',
+    'pets.apps.PetsConfig',
 ]
 
 MIDDLEWARE = [
