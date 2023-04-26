@@ -32,3 +32,19 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect(reverse('home:home'))
+
+
+class RegistrationView(View):
+
+    def get(self, request):
+        form = forms.RegistrationForm()
+        return render(request, 'users/register.html', {'form': form})
+
+    def post(self, request):
+        form = forms.RegistrationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('users:login'))
+
+        return render(request, 'users/register.html', {'form': form})
