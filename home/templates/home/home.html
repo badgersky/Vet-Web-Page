@@ -5,5 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <p>Home Page</p>
+    <div class="card w-100 mb-5 mt-5">
+        <div class="card-body">
+            <h5 class="card-title">Add Pet</h5>
+            <p class="card-text">Add pet to database to make it easier to reserve appointment</p>
+            <a href="{% url 'pets:add' %}" class="btn btn-primary">Add Pet</a>
+        </div>
+    </div>
 {% endblock %}

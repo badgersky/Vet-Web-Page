@@ -4,13 +4,13 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Register
+    Add Pet
 {% endblock %}
 
 {% block content %}
     <form class="mt-5 mb-5" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Add Pet</button>
     </form>
 {% endblock %}
