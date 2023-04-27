@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views import View
 from . import forms
 from . import models
+from django.contrib import messages
 
 
 class AddPetView(View):
@@ -39,3 +40,17 @@ class ShowPetView(View):
             pets = models.Pet.objects.filter(owner=request.user)
             return render(request, 'pets/show-pets.html', {'pets': pets})
         return redirect(reverse('users:login'))
+
+
+class DeletePetView(View):
+
+    def get(self, request, pet_id):
+        try:
+            models.Pet.objects.get(pk=pet_id).delete()
+        except models.Pet.DoesNotExist:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 f'No such pet!'
+                                 )
+
+        return redirect(reverse('pets:show'))

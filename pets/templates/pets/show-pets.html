@@ -14,11 +14,9 @@
             <h5 class="card-title">Name: {{ pet.name }}</h5><br>
             <h5 class="card-title">Age: {{ pet.age }}</h5><br>
             <h5 class="card-title">Species: {{ pet.get_species_display }}</h5><br>
-            <a href="" class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-primary">Delete</a>
+            <a href="" type="submit" class="btn btn-primary">Edit</a>
+            <a href="{% url 'pets:delete' pet_id=pet.id %}" type="submit" class="btn btn-primary">Delete</a>
         </div>
     </div>
     {% endfor %}
 {% endblock %}
-
-
