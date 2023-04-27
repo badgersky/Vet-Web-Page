@@ -30,3 +30,17 @@ class PetForm(forms.Form):
         model = models.Pet
         fields = '__all__'
         exclude = ['user']
+
+
+class EditAgeForm(forms.Form):
+    age = forms.IntegerField(
+        label='Age',
+        widget=forms.TextInput(attrs={
+            'name': 'age',
+            'placeholder': 'age',
+        })
+    )
+
+    class Meta:
+        model = models.Pet
+        fields = ('age',)

@@ -54,3 +54,36 @@ class DeletePetView(View):
                                  )
 
         return redirect(reverse('pets:show'))
+
+
+class EditAgeView(View):
+
+    def get(self, request, pet_id):
+        form = forms.EditAgeForm()
+        return render(request, 'partials/edit-age.html', {'form': form, 'pet_id': pet_id})
+
+    def post(self, request, pet_id):
+        form = forms.EditAgeForm(request.POST)
+        pet = models.Pet.objects.get(pk=pet_id)
+
+        if form.is_valid():
+            curr_age = pet.age
+            new_age = form.cleaned_data.get('age')
+
+            if new_age <= curr_age:
+                messages.add_message(request,
+                                     messages.WARNING,
+                                     f'New age must be bigger than current one!'
+                                     )
+                return render(request, 'partials/edit-age.html', {'form': form, 'pet_id': pet_id})
+            else:
+                pet.age = new_age
+                pet.save()
+                messages.add_message(request,
+                                     messages.SUCCESS,
+                                     f'Age updated'
+                                     )
+                return redirect(reverse('pets:show'))
+        else:
+            return redirect(reverse('pets:edit'))
+    
