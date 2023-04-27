@@ -19,7 +19,11 @@ class PetForm(forms.Form):
     )
     species = forms.ChoiceField(
         label='Species',
-        choices=models.Pet.SPECIES_CHOICES
+        choices=models.Pet.SPECIES_CHOICES,
+    )
+    gender = forms.ChoiceField(
+        label='Gender',
+        choices=models.Pet.GENDER_CHOICES,
     )
 
     class Meta:
