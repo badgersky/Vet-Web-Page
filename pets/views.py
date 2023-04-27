@@ -86,4 +86,3 @@ class EditAgeView(View):
                 return redirect(reverse('pets:show'))
 
         return render(request, 'partials/edit-age.html', {'form': form, 'pet_id': pet_id})
-
