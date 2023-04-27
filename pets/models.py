@@ -13,6 +13,10 @@ class Pet(models.Model):
     HAMSTER = 'HA'
     RABBIT = 'RA'
     FERRET = 'FE'
+    TURTLE = 'TU'
+    LIZARD = 'LI'
+    SPIDER = 'SP'
+    SCORPIO = 'SC'
     SPECIES_CHOICES = [
         (DOG, 'Dog'),
         (CAT, 'Cat'),
@@ -23,9 +27,21 @@ class Pet(models.Model):
         (HAMSTER, 'Hamster'),
         (RABBIT, 'Rabbit'),
         (FERRET, 'Ferret'),
+        (TURTLE, 'Turtle'),
+        (LIZARD, 'Lizard'),
+        (SPIDER, 'Spider'),
+        (SCORPIO, 'Scorpio'),
+    ]
+
+    MALE = 'M'
+    FEMALE = 'F'
+    GENDER_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
     ]
 
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     species = models.CharField(max_length=2, choices=SPECIES_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     age = models.IntegerField(MinValueValidator(0))

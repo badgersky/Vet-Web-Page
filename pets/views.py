@@ -33,4 +33,9 @@ class AddPetView(View):
 
 
 class ShowPetView(View):
-    pass
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            pets = models.Pet.objects.filter(owner=request.user)
+            return render(request, 'pets/show-pets.html', {'pets': pets})
+        return redirect(reverse('users:login'))
