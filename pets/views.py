@@ -84,6 +84,5 @@ class EditAgeView(View):
                                      f'Age updated'
                                      )
                 return redirect(reverse('pets:show'))
-        else:
-            return redirect(reverse('pets:edit'))
-    
+            
+        return render(request, 'partials/edit-age.html', {'form': form, 'pet_id': pet_id})
