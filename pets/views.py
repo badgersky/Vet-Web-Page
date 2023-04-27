@@ -30,3 +30,7 @@ class AddPetView(View):
             return redirect(reverse('home:home'))
 
         return render(request, 'pets/add-pet.html', {'form': form})
+
+
+class ShowPetView(View):
+    pass

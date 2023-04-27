@@ -12,4 +12,11 @@
             <a href="{% url 'pets:add' %}" class="btn btn-primary">Add Pet</a>
         </div>
     </div>
+    <div class="card w-100 mb-5 mt-5">
+        <div class="card-body">
+            <h5 class="card-title">Show Pets</h5>
+            <p class="card-text">Show all pets I have added to database</p>
+            <a href="{% url 'pets:show' %}" class="btn btn-primary">Show Pet</a>
+        </div>
+    </div>
 {% endblock %}
