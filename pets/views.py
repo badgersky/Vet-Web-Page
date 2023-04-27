@@ -12,6 +12,10 @@ class AddPetView(View):
         if request.user.is_authenticated:
             form = forms.PetForm()
             return render(request, 'pets/add-pet.html', {'form': form})
+
+        messages.add_message(request,
+                             messages.WARNING,
+                             f'Login first')
         return redirect(reverse('users:login'))
 
     def post(self, request):
@@ -39,6 +43,10 @@ class ShowPetView(View):
         if request.user.is_authenticated:
             pets = models.Pet.objects.filter(owner=request.user)
             return render(request, 'pets/show-pets.html', {'pets': pets})
+
+        messages.add_message(request,
+                             messages.WARNING,
+                             f'Login first')
         return redirect(reverse('users:login'))
 
 
