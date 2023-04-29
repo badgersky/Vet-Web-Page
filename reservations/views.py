@@ -57,3 +57,10 @@ class ReservationView(View):
                 return redirect(reverse('home:home'))
 
         return render(request, 'reservations/reservations.html', {'form': form})
+
+
+class ShowReservationsView(View):
+
+    def get(self, request):
+        reservations = models.Reservations.objects.filter(owner=request.user)
+        return render(request, 'reservations/reservations-list.html', {'reservations': reservations})

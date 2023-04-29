@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    Reservations
+{% endblock %}
+
+{% block content %}
+    {% for reservation in reservations %}
+        <div class="card w-100 mb-5 mt-5">
+            <div class="card-body">
+                <h5 class="card-title">Pet: {{ reservation.pet.name }}</h5><br>
+                <p class="card-text">Date: {{ reservation.date }}</p>
+                <p class="card-text">Hour: {{ reservation.get_hour_display }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
