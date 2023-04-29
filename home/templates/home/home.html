@@ -26,4 +26,11 @@
             <a href="{% url 'reservations:reserve' %}" class="btn btn-primary">Reserve Visit</a>
         </div>
     </div>
+    <div class="card w-100 mb-5 mt-5">
+        <div class="card-body">
+            <h5 class="card-title">Show Reservations</h5>
+            <p class="card-text">Show all reservations you made</p>
+            <a href="{% url 'reservations:reservation-list' %}" class="btn btn-primary">Show Reservations</a>
+        </div>
+    </div>
 {% endblock %}
