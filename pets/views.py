@@ -72,16 +72,15 @@ class EditAgeView(View):
 
     def post(self, request, pet_id):
         form = forms.EditAgeForm(request.POST)
-        pet = models.Pet.objects.get(pk=pet_id)
 
         if form.is_valid():
-            curr_age = pet.age
             new_age = form.cleaned_data.get('age')
+            pet = models.Pet.objects.get(pk=pet_id)
 
-            if new_age <= curr_age:
+            if new_age < 0:
                 messages.add_message(request,
                                      messages.WARNING,
-                                     f'New age must be bigger than current one!'
+                                     f'Age cannot be negative!'
                                      )
                 return render(request, 'partials/edit-age.html', {'form': form, 'pet_id': pet_id})
             else:
