@@ -62,5 +62,11 @@ class ReservationView(View):
 class ShowReservationsView(View):
 
     def get(self, request):
-        reservations = models.Reservations.objects.filter(owner=request.user)
-        return render(request, 'reservations/reservations-list.html', {'reservations': reservations})
+        if request.user.is_authenticated:
+            reservations = models.Reservations.objects.filter(owner=request.user)
+            return render(request, 'reservations/reservations-list.html', {'reservations': reservations})
+
+        messages.add_message(request,
+                             messages.WARNING,
+                             f'Login first')
+        return redirect(reverse('users:login'))
