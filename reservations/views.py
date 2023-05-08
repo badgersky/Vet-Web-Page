@@ -12,7 +12,7 @@ class ReservationView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            form = forms.ReservationForm()
+            form = forms.ReservationForm(user=request.user)
             return render(request, 'reservations/reservations.html', {'form': form})
 
         messages.add_message(request,
@@ -21,7 +21,7 @@ class ReservationView(View):
         return redirect(reverse('users:login'))
 
     def post(self, request):
-        form = forms.ReservationForm(request.POST)
+        form = forms.ReservationForm(request.POST, user=request.user)
 
         if form.is_valid():
             pet = form.cleaned_data.get('pet')

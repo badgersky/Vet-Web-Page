@@ -11,6 +11,14 @@ class DateInput(forms.DateInput):
 
 
 class ReservationForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args)
+        user = kwargs.get('user')
+
+        names = [(pet.name, pet.name) for pet in Pet.objects.filter(owner=user)]
+        self.fields.get('pet').choices = names
+
     date = forms.DateField(
         label='Date',
         widget=DateInput,
@@ -19,7 +27,7 @@ class ReservationForm(forms.Form):
         label='Hour',
         choices=models.Reservations.HOUR_CHOICES,
     )
-    pet = forms.CharField(
+    pet = forms.ChoiceField(
         label='Pet Name',
     )
 
